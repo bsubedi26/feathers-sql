@@ -1,0 +1,13 @@
+{
+  "host": "localhost",
+  "port": 3000,
+  "mongodb": "mongodb://localhost:27017/first",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "VjDBq0MaEfQ3gSBPbtjMKb16zYIdm7i5DbRFhIiP3O2aL/q87RWr3lEQDMlDf0iST/f6ypp5DStCcA+qEhe28A=="
+    },
+    "local": {},
+    "successRedirect": "/chat.html"
+  }
+}
