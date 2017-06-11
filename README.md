@@ -1,5 +1,5 @@
-# feathersjs-react-chat
-Simple chat application using react, socket, &amp; nodejs.
+# feathers-again
+
 > 
 
 ## About
@@ -8,16 +8,17 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 ## Getting Started
 
-Getting up and running is easy.
+Getting up and running is as easy as 1, 2, 3.
 
-1. Install the dependencies
-    
+1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+2. Install your dependencies
+
     ```
-    cd path/to/feathersjs-react-chat; npm install
+    cd path/to/feathers-again; npm install
     ```
 
-2. Start the app
-    
+3. Start your app
+
     ```
     npm start
     ```
@@ -38,6 +39,16 @@ $ feathers generate hook                  # Generate a new Hook
 $ feathers generate model                 # Generate a new Model
 $ feathers help                           # Show all commands
 ```
+
+## Help
+
+For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
+
+## Changelog
+
+__0.1.0__
+
+- Initial release
 
 ## License
 

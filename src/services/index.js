@@ -1,15 +1,10 @@
-'use strict';
-const message = require('./message');
-const authentication = require('./authentication');
-const user = require('./user');
-const mongoose = require('mongoose');
-module.exports = function() {
-  const app = this;
+const users = require('./users/users.service.js');
+const tasks = require('./tasks/tasks.service.js');
+const authentication = require('./authentication/authentication.service');
 
-  mongoose.connect(app.get('mongodb'));
-  mongoose.Promise = global.Promise;
-
+module.exports = function () {
+  const app = this; // eslint-disable-line no-unused-vars
   app.configure(authentication);
-  app.configure(user);
-  app.configure(message);
+  app.configure(users);
+  app.configure(tasks);
 };

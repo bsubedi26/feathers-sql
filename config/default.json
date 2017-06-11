@@ -1,13 +1,35 @@
 {
   "host": "localhost",
-  "port": 3000,
-  "mongodb": "mongodb://localhost:27017/first",
+  "port": 3030,
   "public": "../public/",
-  "auth": {
-    "token": {
-      "secret": "VjDBq0MaEfQ3gSBPbtjMKb16zYIdm7i5DbRFhIiP3O2aL/q87RWr3lEQDMlDf0iST/f6ypp5DStCcA+qEhe28A=="
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb://localhost:27017/feathers_again",
+  "authentication": {
+    "secret": "7dba0d812222853e66c3e09bafa56771f243529e268438545d6f1140d1487f7c65b2c82f83c416759a15255fb4002d59a2ce00bd913f5b2e5ccfc2ff91c35a0fbc1f3f101aab0ae0ca3b0e8c0b393212cda8829bb8fc79ee3344c45fa0f617b19337514a42fc8fd9215d1cb1485cc76359c5513c1733d80913c3ba634ad879c5bf602afdcd7d48a8792f24b7848c06d336a0173d36137e3cce4efb8913674aa262fb8a34309d28955f8101c01a450771c6f2497d62c1b9e152ae8f2bb4b54ae3cab7f756406be72417189227b19db84f5155707e40fecd9707970f6be7e1864c2f375b7b531a78238b94015159f2cc94e09b13fd61cc9f29841d02b228d0a099",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "type": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
     },
-    "local": {},
-    "successRedirect": "/chat.html"
+    "local": {
+      "entity": "user",
+      "service": "users",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
   }
 }
