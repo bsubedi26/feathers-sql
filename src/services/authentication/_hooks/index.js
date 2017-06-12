@@ -4,8 +4,9 @@ const errors = require('feathers-errors');
 function verifyUserCredentials() {
   return async (hook) => {
     console.log('verify user credentials before sending a jwt token to client...');
+    // OBJECT BODY SENT BY THE CLIENT
     const { email, password } = hook.data;
-    const user = await hook.app.service('users').find({query: {email: email}}); 
+    const user = await hook.app.service('users').find({query: {email:email}}); 
 
     if (user[0]) {
        const passwordMatch = await bcrypt.compare(password, user[0].password)

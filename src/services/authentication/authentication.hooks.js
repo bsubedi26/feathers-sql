@@ -1,6 +1,5 @@
 /***
-  Feathers authentication uses the create method for login 
-  and the remove method for logout.  
+  CUSTOM MIDDLEWARES FOR AUTHENTICATION  
 ***/
 const authentication = require('feathers-authentication');
 const localAuthVerify = require('feathers-authentication-local').Verifier;

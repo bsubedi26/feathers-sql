@@ -1,9 +1,13 @@
+const authentication = require('feathers-authentication');
 
 
 module.exports = {
   before: {
     all: [],
-    find: [ beforeFindTask() ],
+    find: [ 
+      beforeFindTask(),
+      authentication.hooks.authenticate('jwt')
+    ],
     get: [],
     create: [ beforeCreateTask() ],
     update: [],
@@ -42,21 +46,9 @@ function beforeCreateTask() {
 function beforeFindTask() {
   return async function(hook) {
     console.log('::beforeFindTask()')
-    console.log(hook.params.headers)
-    let token = hook.params.headers.authorization.split(" ")
-    console.log(token[1].toString())
-    let result = await hook.app.passport.verifyJWT(token[1], { secret: hook.app.passport.options('jwt').secret })
-    console.log('result ', result)
+    // console.log(hook.params.headers)
+    let result = await hook.app.passport.verifyJWT(hook.params.headers.authorization, { secret: hook.app.passport.options('jwt').secret })
+    console.log('app.passport.verifyJWT() result ', result)
     return hook
   }
 }
-
-
-//  function beforeGetTask() {
-//   return async (hook) => {
-//   console.log('gg')
-//   // let result = await app.passport.verifyJWT(hook.result.accessToken, { secret: app.passport.options('jwt').secret })
-//   //   await hook.app.service('users').remove(result.userId)
-//     return hook
-//   };
-// }

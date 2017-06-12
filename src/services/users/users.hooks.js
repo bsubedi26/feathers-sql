@@ -12,7 +12,7 @@ module.exports = {
     find: [],
     get: [...restrict],
     create: [
-      beforeCreateUser(),
+      beforeCreatingUser(),
       hashPassword()
     ],
     update: [...restrict, hashPassword()],
@@ -45,7 +45,7 @@ module.exports = {
 };
 
 
-function beforeCreateUser() {
+function beforeCreatingUser() {
   return async (hook) => {
     console.log('::beforeCreateUser() ', hook.data)
     const { password } = hook.data
