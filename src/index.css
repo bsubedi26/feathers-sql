@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.navbar-links {
+  padding: 10px;
+  background-color: rgba(red, green, blue, alpha);
+}
+.padding-10 {
+  padding: 10px;
+}
+
+.contain {
+  max-width: 768px;
+  margin: 0 auto;
+}
