@@ -1,4 +1,4 @@
-# feathers-chat
+# feathers-sql
 
 > 
 
@@ -8,14 +8,14 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 ## Getting Started
 
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
+1. [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/).
+2. Install dependencies
 
     ```
-    cd path/to/feathers-again; npm install
+    cd path/to/feathers-sql; npm install
     ```
 
-3. Start your app
+3. Start app
 
     ```
     npm start
