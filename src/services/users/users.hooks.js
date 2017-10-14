@@ -1,33 +1,32 @@
+'use strict';
+
 const { authenticate } = require('feathers-authentication').hooks;
 const { hashPassword } = require('feathers-authentication-local').hooks;
-const commonHooks = require('feathers-hooks-common');
-const privateHooks = require('./_hooks/index');
-const errors = require('feathers-errors');
-
-const restrict = [];
+const commonHooks  = require('feathers-hooks-common');
+const gravatar = require('../../hooks/gravatar');
+const { validateUniqueUser } = require('./hooks');
 
 module.exports = {
   before: {
     all: [],
-    find: [],
-    get: [...restrict],
+    find: [  ],
+    get: [  ],
     create: [
-      beforeCreatingUser(),
+      validateUniqueUser(),
       hashPassword()
     ],
-    update: [...restrict, hashPassword()],
-    patch: [...restrict, hashPassword()],
-    remove: [...restrict]
+    update: [ authenticate('jwt') ],
+    patch: [ authenticate('jwt') ],
+    remove: [ 
+      // authenticate('jwt')
+    ]
   },
 
   after: {
-    all: [
-      commonHooks.when(hook => hook.params.provider, commonHooks.discard('password'))
-      // commonHooks.discard('password')
-    ],
+    all: [commonHooks.when(hook => hook.params.provider, commonHooks.discard('password'))],
     find: [],
     get: [],
-    create: [afterCreateUser()],
+    create: [],
     update: [],
     patch: [],
     remove: []
@@ -37,25 +36,11 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+
+    ],
     update: [],
     patch: [],
     remove: []
   }
 };
-
-
-function beforeCreatingUser() {
-  return async (hook) => {
-    console.log('::beforeCreateUser() ', hook.data)
-    const { password } = hook.data
-    return hook
-  }
-}
-
-function afterCreateUser() {
-  return async (hook) => {
-    console.log('::afterCreateUser() ', hook.data)
-    return hook
-  }
-}

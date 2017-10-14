@@ -1,17 +1,22 @@
-// users-model.js - A mongoose model
-//
-// See http://mongoosejs.com/docs/models.html
-// for more of what you can do here.
 module.exports = function (app) {
-  const mongooseClient = app.get('mongooseClient');
-  const users = new mongooseClient.Schema({
-  
-    email: {type: String, unique: true, required: true },
-    password: { type: String, required: true },
+  const db = app.get('knexClient');
+  const table = 'users';
 
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+  db.schema.hasTable(table).then(exists => {
+    if (!exists) {
+      db.schema.createTable(table, t => {
+        t.increments('id').primary().notNullable()
+        t.string('email').unique().notNullable()
+        t.string('password').notNullable()
+        t.boolean('isDeleted').defaultTo(false)
+        t.timestamps(true, true)
+
+        // t.specificType( 'roles', 'varchar(255)[]' ).notNullable();
+      })
+        .then(() => console.log(`Updated ${table} table`))
+        .catch((e) => console.log(e))
+    }
   });
 
-  return mongooseClient.model('users', users);
+  return db;
 };

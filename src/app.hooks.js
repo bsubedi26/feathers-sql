@@ -1,5 +1,6 @@
 // Application hooks that run for every service
 const logger = require('./hooks/logger');
+const { sqliteErrorHandler, displayResponse } = require('./hooks/sqlite');
 
 module.exports = {
   before: {
@@ -16,14 +17,19 @@ module.exports = {
     all: [ logger() ],
     find: [],
     get: [],
-    create: [],
+    create: [ 
+      // displayResponse() 
+    ],
     update: [],
     patch: [],
     remove: []
   },
 
   error: {
-    all: [ logger() ],
+    all: [
+      logger(),
+      // sqliteErrorHandler()
+    ],
     find: [],
     get: [],
     create: [],

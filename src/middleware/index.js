@@ -7,6 +7,21 @@ module.exports = function () {
   // the error handler have to go last.
   const app = this;
 
+  app.get('/testing', (req, res) => {
+
+    const userService = app.service('users')
+
+    userService.find({ query: 
+      {
+      email: 'fewf',
+      $limit: 4
+      } 
+    })
+    .then(allUsers => {
+      res.json(allUsers)
+    })
+  })
+
   app.use(notFound());
   app.use(handler());
 };
