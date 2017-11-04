@@ -8,8 +8,8 @@ module.exports = function (app) {
         t.increments('id').primary();
         t.string('text').notNullable();
         
-        t.integer('user_id').unsigned().references('id').inTable('users');
-        t.string('user_email').references('email').inTable('users').onDelete('cascade');
+        t.integer('user_id').unsigned().references('id').inTable('user');
+        t.string('user_email').references('email').inTable('user').onDelete('cascade');
         t.timestamps(true, true);
 
       })

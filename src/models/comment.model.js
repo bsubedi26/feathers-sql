@@ -9,7 +9,7 @@ module.exports = function (app) {
         t.string('comment').notNullable();
         
         t.integer('blog_id').unsigned().references('id').inTable('blog');
-        t.integer('user_id').unsigned().references('id').inTable('users');
+        t.integer('user_id').unsigned().references('id').inTable('user');
         t.timestamps(true, true);
 
       })

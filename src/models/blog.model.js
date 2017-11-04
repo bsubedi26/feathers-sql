@@ -9,7 +9,7 @@ module.exports = function (app) {
         t.string('title').notNullable();
         t.string('body').notNullable();
         
-        t.integer('u_id').unsigned().references('id').inTable('users');
+        t.integer('u_id').unsigned().references('id').inTable('user');
         t.timestamps(true, true);
 
       })

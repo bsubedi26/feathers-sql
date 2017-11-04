@@ -5,7 +5,7 @@ module.exports = function (app) {
   db.schema.hasTable(table).then(exists => {
     if (!exists) {
       db.schema.createTable(table, t => {
-        t.increments('id').primary().notNullable();
+        t.increments('id').primary();
         t.string('email').unique().notNullable();
         t.string('password').notNullable();
         t.boolean('isDeleted').defaultTo(false);

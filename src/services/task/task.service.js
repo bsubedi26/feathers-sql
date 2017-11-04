@@ -13,8 +13,10 @@ module.exports = function (app) {
     paginate
   };
 
+  const svc = createService(options);
+  
   // Initialize our service with any options it requires
-  app.use('/task', createService(options));
+  app.use('/task', svc);
 
   // Get our initialized service so that we can register hooks and filters
   const service = app.service('task');

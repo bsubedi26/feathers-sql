@@ -4,7 +4,7 @@ const message = require('./message/message.service.js');
 const blog = require('./blog/blog.service.js');
 const comment = require('./comment/comment.service.js');
 
-const routesTable = require('./routesTable');
+// const routesTable = require('./routesTable');
 
 module.exports = function (app) {
   app.configure(task);
@@ -13,5 +13,5 @@ module.exports = function (app) {
   app.configure(blog);
   app.configure(comment);
 
-  app.configure(routesTable);
+  // app.configure(routesTable);
 };
