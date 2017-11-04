@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-client/*
 
 # Runtime data
 pids
@@ -109,5 +108,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # Others
+lib/
 data/
-tmp/

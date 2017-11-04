@@ -8,13 +8,13 @@ module.exports = function (app) {
         t.increments('id').primary();
         t.string('comment').notNullable();
         
-        t.integer('blog_id').unsigned().references('id').inTable('blog')
-        t.integer('user_id').unsigned().references('id').inTable('users')
-        t.timestamps(true, true)
+        t.integer('blog_id').unsigned().references('id').inTable('blog');
+        t.integer('user_id').unsigned().references('id').inTable('users');
+        t.timestamps(true, true);
 
       })
         .then(() => console.log(`Updated ${table} table`))
-        .catch((e) => console.log(e))
+        .catch((e) => console.log(e));
     }
   });
 

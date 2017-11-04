@@ -3,21 +3,29 @@
   "port": 3030,
   "public": "../public/",
   "paginate": {
-    "default": 25,
+    "default": 10,
     "max": 50
   },
-  "nedb": "../data",
+  "mysql": {
+    "client": "mysql2",
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "root",
+      "database": "greatbay_db"
+    }
+  },
   "authentication": {
-    "secret": "220cac0f7d60fb3b50d5e53844076334d3143894836b1c1eb2c4c893ab6454da9da1a8d9147b94068080f0b25dd1d77d896fbb087cb056b815076ee6bd69c62a429d7f412fae52593bd66c0bc1a1b04dcafc37357072a8f26382d734ca830cc44e32c50852feffdd4691229b851a6a08bb1b4a7a14234c813fbb459ff9d519101786caa871d45073da38cf012a2120d0f5cd0f6c4fe33c4ceb383e8c306d46eae714ca96226637763a2f8621e81ccbf0d6f67b0b9306309c87f600043aa1d608fab7073f384a34615fbe7671aa550c869353d342eef9f34914886e44e58b1205f7ce7fff62bf73a8a2bd2451d5e99a09db877073462cf4f24495e5f65ad740c2",
+    "secret": "2feb498c475015e8ffd1381cfd210606fb0cb0868903ff1635922427bffbe8361b7589931108893ac2d3bf434cc4c08f860702641d720dbf6f1dfb38d12334d693426ffd2f89308752f54fe653d145ddae5b566ed5b9e398b610a5b19b4fd64c84071f1a0b049a1292bada97e67fc4fbd0ba7bf7237cf1638f7686a94e08ebf1ab5fb4e291d5425f1cefefe66a24ad86eafbc0b7c1a60a1f39fcc69527d39f3c0f8eaa990160648e8e4cf0771ced919a00e5e0722c9404d1555419fc247ea876b5d48a5a3db42d63417305b05af0accc89e6f0c4e9ff96afe0e08c282cb574940164150d910aaf45e65d04642fa3e1b2c0b2ddaa69dbeec01430e7ef736c79c1",
     "strategies": [
       "jwt",
       "local"
     ],
     "path": "/authentication",
-    "service": "users",
+    "service": "user",
     "jwt": {
       "header": {
-        "type": "access"
+        "typ": "access"
       },
       "audience": "https://yourdomain.com",
       "subject": "anonymous",
@@ -27,18 +35,8 @@
     },
     "local": {
       "entity": "user",
-      "service": "users",
       "usernameField": "email",
       "passwordField": "password"
-    }
-  },
-  "mysql": {
-    "client": "mysql",
-    "connection": {
-      "host": "127.0.0.1",
-      "user": "root",
-      "password": "root",
-      "database": "greatbay_db"
     }
   }
 }

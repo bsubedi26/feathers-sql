@@ -1,14 +1,17 @@
-const messages = require('./messages/messages.service.js');
-const users = require('./users');
+const task = require('./task/task.service.js');
+const user = require('./user/user.service.js');
+const message = require('./message/message.service.js');
 const blog = require('./blog/blog.service.js');
-const configureRoutesTable = require('./util')
-const comment = require('./comment');
+const comment = require('./comment/comment.service.js');
 
-module.exports = function () {
-  const app = this; // eslint-disable-line no-unused-vars
-  app.configure(messages);
-  app.configure(users);
+const routesTable = require('./routesTable');
+
+module.exports = function (app) {
+  app.configure(task);
+  app.configure(user);
+  app.configure(message);
   app.configure(blog);
   app.configure(comment);
-  // configureRoutesTable(app)
+
+  app.configure(routesTable);
 };

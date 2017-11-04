@@ -1,17 +1,17 @@
 module.exports = function (app) {
   const db = app.get('knexClient');
-  const table = 'blog';
+  const table = 'user';
 
   db.schema.hasTable(table).then(exists => {
     if (!exists) {
       db.schema.createTable(table, t => {
-        t.increments('id').primary();
-        t.string('title').notNullable();
-        t.string('body').notNullable();
-        
-        t.integer('u_id').unsigned().references('id').inTable('users');
+        t.increments('id').primary().notNullable();
+        t.string('email').unique().notNullable();
+        t.string('password').notNullable();
+        t.boolean('isDeleted').defaultTo(false);
         t.timestamps(true, true);
 
+        // t.specificType( 'roles', 'varchar(255)[]' ).notNullable();
       })
         .then(() => console.log(`Updated ${table} table`))
         .catch((e) => console.log(e));
