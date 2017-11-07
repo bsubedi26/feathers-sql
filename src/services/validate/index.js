@@ -31,23 +31,6 @@ module.exports = (service, type, options) => {
     }
   });
 
-  // service.before({
-  //   create: validateHook,
-  //   update: validateHook,
-  //   patch: function (hook, next) {
-  //     // we want to validate the full object
-  //     // so first get the current object
-  //     // then apply the patch in memory
-  //     // finally validate this full patched object
-  //     service.get(hook.id, (err, data) => {
-  //       if (err) { return next(err); }
-  //       const vhookObject = Object.assign({}, hook, {
-  //         data: Object.assign(data, hook.data)
-  //       });
-  //       validateHook(vhookObject, next);
-  //     });
-  //   }
-  // });
 };
 
 const createValidateHook_ = (type, options) => {
