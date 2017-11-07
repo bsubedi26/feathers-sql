@@ -2,6 +2,13 @@
 const createService = require('feathers-knex');
 const createModel = require('../../models/user.model');
 const hooks = require('./user.hooks');
+const t = require('tcomb');
+const validate = require('../validate');
+
+const schema = t.struct({
+  email: t.String,
+  password: t.String
+});
 
 module.exports = function (app) {
   const Model = createModel(app);
@@ -18,6 +25,8 @@ module.exports = function (app) {
 
   // Get our initialized service so that we can register hooks and filters
   const service = app.service('user');
+
+  validate(service, schema);
 
   service.hooks(hooks);
 

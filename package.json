@@ -47,6 +47,7 @@
     "pg": "^7.3.0",
     "serve-favicon": "^2.4.5",
     "sqlite3": "^3.1.13",
+    "tcomb-validation": "^3.4.1",
     "winston": "^2.4.0"
   },
   "devDependencies": {
