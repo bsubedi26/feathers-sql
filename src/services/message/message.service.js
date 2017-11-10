@@ -22,11 +22,12 @@ module.exports = function () {
 
   service.hooks(hooks);
 
-  app.publish(() => {
+  service.publish(() => {
     // Here you can add event publishers to channels set up in `channels.js`
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 
     // e.g. to publish all service events to all authenticated users use
     // return app.channel('authenticated');
+    return app.channel('anonymous');
   });
 };

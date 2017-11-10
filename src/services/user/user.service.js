@@ -13,7 +13,6 @@ const schema = t.struct({
 module.exports = function (app) {
   const Model = createModel(app);
   const paginate = app.get('paginate');
-
   const options = {
     name: 'user',
     Model,
