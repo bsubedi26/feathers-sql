@@ -5,6 +5,15 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const { populate } = require('feathers-hooks-common');
 // const processMessage = require('../../hooks/process-message');
 
+
+const delay = (time) => new Promise(resolve => setTimeout(resolve, time))
+function debounce() {
+  return async hook => {
+    await delay(1000)
+    return Promise.resolve(hook)
+  }
+}
+
 function beforeFind() {
   return async (hook) => {
     const knex = hook.app.get('knexClient')
@@ -21,7 +30,7 @@ module.exports = {
       // authenticate('jwt')
     ],
     find: [
-      beforeFind()
+      debounce()
     ],
     get: [],
     create: [],

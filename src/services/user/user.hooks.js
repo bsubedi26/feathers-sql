@@ -3,10 +3,18 @@
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
 const validateUniqueUser = require('./_hooks/validateUniqueUser');
 
+const delay = (time) => new Promise(resolve => setTimeout(resolve, time))
+function debounce() {
+  return async hook => {
+    await delay(2000)
+    return Promise.resolve(hook)
+  }
+}
 module.exports = {
   before: {
     all: [],
-    find: [ 
+    find: [
+      debounce()
       // authenticate('jwt')
     ],
     get: [],
