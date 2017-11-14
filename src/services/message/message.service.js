@@ -2,6 +2,12 @@
 const createService = require('feathers-knex');
 const createModel = require('../../models/message.model');
 const hooks = require('./message.hooks');
+const t = require('tcomb');
+const validate = require('../validate');
+
+const schema = t.struct({
+  text: t.String
+});
 
 module.exports = function () {
   const app = this;
@@ -20,6 +26,8 @@ module.exports = function () {
   // Get our initialized service so that we can register hooks and filters
   const service = app.service('message');
 
+  validate(service, schema);
+  
   service.hooks(hooks);
 
   service.publish(() => {

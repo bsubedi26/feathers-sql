@@ -27,7 +27,7 @@
       "host": "127.0.0.1",
       "user": "root",
       "password": "root",
-      "database": "greatbay_db"
+      "database": "burgers_db"
     }
   },
   "authentication": {

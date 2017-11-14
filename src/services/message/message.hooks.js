@@ -24,6 +24,19 @@ function beforeFind() {
     return hook
   }
 }
+
+function addUserEmailId() {
+  return async hook => {
+    const { user, accessToken, authenticated } = hook.params;
+    
+    hook.data = Object.assign({}, hook.data, {
+      user_id: user.id,
+      user_email: user.email
+    });
+
+    return hook;
+  }
+}
 module.exports = {
   before: {
     all: [
@@ -33,7 +46,9 @@ module.exports = {
       debounce()
     ],
     get: [],
-    create: [],
+    create: [
+      addUserEmailId()
+    ],
     update: [],
     patch: [],
     remove: []

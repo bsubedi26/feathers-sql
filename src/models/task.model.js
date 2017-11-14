@@ -11,7 +11,8 @@ module.exports = function (app) {
     if(!exists) {
       db.schema.createTable(tableName, table => {
         table.increments('id');
-        table.string('text');
+        table.string('text').notNullable();
+        table.string('another_col').notNullable();
       })
         .then(() => console.log(`Created ${tableName} table`))
         .catch(e => console.error(`Error creating ${tableName} table`, e));
