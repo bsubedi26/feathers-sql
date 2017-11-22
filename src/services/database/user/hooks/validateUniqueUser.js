@@ -6,15 +6,15 @@
 
 const validateUniqueUser = () => {
   return async hook => {
-    const { message } = hook.error
+    const { message } = hook.error;
 
     if (message.includes('Duplicate') && message.includes('user_email_unique')) {
-      hook.error.message = 'The provided email already exists. Try again.'
-      return hook
+      hook.error.message = 'The provided email already exists. Try again.';
+      return hook;
     }
 
-    return hook
-  }
-}
+    return hook;
+  };
+};
 
 module.exports = validateUniqueUser;

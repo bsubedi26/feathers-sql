@@ -45,7 +45,6 @@
     "feathers-mailer": "^2.0.0",
     "helmet": "^3.9.0",
     "knex": "^0.13.0",
-    "knex-generic-errors": "^0.1.5",
     "mysql2": "^1.5.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "pg": "^7.3.0",

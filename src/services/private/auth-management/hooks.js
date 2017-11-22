@@ -4,7 +4,7 @@ const _ = require('lodash');
 const errors = require('feathers-errors');
 
 
-const isEnabled = (options = {}) => {
+const isEnabled = () => {
   return function (hook) {
 
     if (!hook.params.provider) { return Promise.resolve(hook); }
@@ -13,7 +13,7 @@ const isEnabled = (options = {}) => {
 
     if (!_.get(hook, 'params.user') || _.isEmpty(hook.params.user)) {
 
-      throw new errors.NotAuthenticated(`Cannot check if the user is enabled. You must not be authenticated.`);
+      throw new errors.NotAuthenticated('Cannot check if the user is enabled. You must not be authenticated.');
 
     } else if (!_.get(hook, 'params.user.isEnabled')) {
 
@@ -21,15 +21,15 @@ const isEnabled = (options = {}) => {
 
       throw new errors.Forbidden(`${name} is disabled.`);
     }
-  }
+  };
 
-}
+};
 
 
 const isAction = () => {
-  let args = Array.from(arguments)
+  let args = Array.from(arguments);
   return hook => args.includes(hook.data.action);
-}
+};
 
 module.exports = {
   before: {

@@ -1,19 +1,19 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+// const { authenticate } = require('@feathersjs/authentication').hooks;
 const { populate } = require('feathers-hooks-common');
 const { hooks } = require('feathers-knex');
 const { transaction } = hooks;
 
 function trxTest() {
   return async (hook) => {
-    const knex = hook.app.get('knexClient')
+    // const knex = hook.app.get('knexClient');
     // hook.service.Model is knex
     // console.log(hook.service.Model === knex) : true
     // const { transaction } = hook.params
     // await hook.app.service('messages').create({ text: 'Boom' }, { transaction })
     // await hook.app.service('users').create({ email: 'abcd', password: 'bbbbb' }, { transaction } )
     // const res = await knex('users').where('email', 'like', '%ab%')
-    return hook
-  }
+    return hook;
+  };
 }
 
 module.exports = {

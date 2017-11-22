@@ -5,12 +5,12 @@
     "mocha": true
   },
   "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },    
   "rules": {
-    "ecmaVersion": "7",
-    "indent": [
-      "error",
-      2
-    ],
+    "no-console": 0,
+    "indent": 0,
     "linebreak-style": 0,
     "quotes": [
       "error",

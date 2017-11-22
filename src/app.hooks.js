@@ -1,6 +1,5 @@
 // Application hooks that run for every service
 const logger = require('./hooks/logger');
-const mapSqlErrorCodes = require('./hooks/mapSqlErrorCodes');
 
 module.exports = {
   before: {
@@ -25,8 +24,7 @@ module.exports = {
 
   error: {
     all: [ 
-      logger(),
-      // mapSqlErrorCodes()
+      logger()
     ],
     find: [],
     get: [],

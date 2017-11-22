@@ -1,31 +1,20 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
-const { populate } = require('feathers-hooks-common');
-
+// const { authenticate } = require('@feathersjs/authentication').hooks;
+// const { populate } = require('feathers-hooks-common');
 // const processMessage = require('../../hooks/process-message');
 
 
-const delay = (time) => new Promise(resolve => setTimeout(resolve, time))
+const delay = (time) => new Promise(resolve => setTimeout(resolve, time));
 function debounce() {
   return async hook => {
-    await delay(1000)
-    return Promise.resolve(hook)
-  }
+    await delay(1000);
+    return Promise.resolve(hook);
+  };
 }
 
-function beforeFind() {
-  return async (hook) => {
-    const knex = hook.app.get('knexClient')
-    // const user = await knex('users').where({ id: 39 })
-    // const messagesJoined = await knex().from('messages')
-    //   .innerJoin('users', 'users.id', 'messages.user_id')
-    // console.log('MESSAGES -> ', messagesJoined)
-    return hook
-  }
-}
 
 function addUserEmailId() {
   return async hook => {
-    const { user, accessToken, authenticated } = hook.params;
+    const { user } = hook.params;
     
     hook.data = Object.assign({}, hook.data, {
       user_id: user.id,
@@ -33,7 +22,7 @@ function addUserEmailId() {
     });
 
     return hook;
-  }
+  };
 }
 module.exports = {
   before: {

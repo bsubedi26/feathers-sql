@@ -5,13 +5,13 @@ module.exports = function (app) {
   const tableBuilder = require('knex/lib/schema/tablebuilder');
 
   schemaBuilder.prototype.addedThis = function() {
-    console.log('addedThis works')
+    console.log('addedThis works');
     return this;
-  }
+  };
 
   tableBuilder.prototype.validateCol = function() {
     return this;
-  }
+  };
 
   knex.schema.hasTable(table).then(exists => {
     // if (exists) {

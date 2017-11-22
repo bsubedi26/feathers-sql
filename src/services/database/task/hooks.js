@@ -2,9 +2,9 @@ const createBefore = () => {
   return async hook => {
     // console.log(Object.keys(hook))
     // console.log(hook.path)
-    return hook 
-  }
-}
+    return hook;
+  };
+};
 const createError = () => {
   return async hook => {
     // console.log(Object.keys(hook))
@@ -16,8 +16,8 @@ const createError = () => {
     // console.log("********************************")
     // console.log(hook.error)
     return hook;
-  }
-}
+  };
+};
 module.exports = {
   before: {
     all: [],

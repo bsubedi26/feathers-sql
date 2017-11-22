@@ -1,7 +1,7 @@
 // const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
-const debounce = require('./hooks/debounce');
+// const debounce = require('./hooks/debounce');
 // const catchAllErrors = require('./hooks/catchAllErrors');
 const verifyHooks = require('feathers-authentication-management').hooks;
 const commonHooks = require('feathers-hooks-common');
@@ -20,8 +20,8 @@ const sendVerificationEmail = () => {
       return hook;
     }
     return hook;
-  }
-}
+  };
+};
 
 const fixAddVerification = () => {
 
@@ -31,8 +31,8 @@ const fixAddVerification = () => {
     // console.log(hook.data.verifyChanges)
     // JSON.stringify(hook.data.verifyChanges);
     return hook;
-  }
-}
+  };
+};
 
 // const checkJSON = () => {
 //   return async hook => {

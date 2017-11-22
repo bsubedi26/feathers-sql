@@ -4,7 +4,7 @@ const debounce = () => {
   return async hook => {
     await delay(2000);
     return hook;
-  }
-}
+  };
+};
 
 module.exports = debounce;
