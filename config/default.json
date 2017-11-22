@@ -18,7 +18,7 @@
       "host": "localhost",
       "user": "postgres",
       "password": "root",
-      "database": "greatbay_db"
+      "database": "knex_db"
     }
   },
   "mysql": {
@@ -27,7 +27,7 @@
       "host": "127.0.0.1",
       "user": "root",
       "password": "root",
-      "database": "burgers_db"
+      "database": "knex_db"
     }
   },
   "authentication": {

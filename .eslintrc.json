@@ -6,6 +6,7 @@
   },
   "extends": "eslint:recommended",
   "rules": {
+    "ecmaVersion": "7",
     "indent": [
       "error",
       2

@@ -1,7 +1,8 @@
 // Initializes the `task` service on path `/task`
-const createService = require('feathers-knex');
-const createModel = require('../../models/task.model');
-const hooks = require('./task.hooks');
+// const createService = require('feathers-knex');
+const createService = require('../../lib/knex');
+const createModel = require('../../../models/task.model');
+const hooks = require('./hooks');
 
 module.exports = function (app) {
   const Model = createModel(app);
