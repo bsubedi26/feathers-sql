@@ -29,11 +29,12 @@ module.exports = function(app) {
   return {
     notifier: function(type, user) {
       console.log(`-- Preparing email for ${type}`);
-      var hashLink;
-      var email;
-      var emailAccountTemplatesPath = path.join(__dirname, 'email-templates', 'account');
-      var templatePath;
-      var compiledHTML;
+      let hashLink;
+      let email;
+      let emailAccountTemplatesPath = path.join(__dirname, 'email-templates', 'account');
+      let templatePath;
+      let compiledHTML;
+      
       switch (type) {
       case 'resendVerifySignup': // send another email with link for verifying user's email addr
 

@@ -12,6 +12,7 @@ const socketio = require('@feathersjs/socketio');
 
 const handler = require('@feathersjs/errors/handler');
 const notFound = require('@feathersjs/errors/not-found');
+const { profiler }  = require('feathers-profiler');
 
 const middleware = require('./middleware');
 const services = require('./services');
@@ -47,6 +48,7 @@ app.configure(channels);
 app.configure(authentication);
 // Set up our services (see `services/index.js`)
 app.configure(services);
+app.configure(profiler({ stats: 'detail' })); // must be configured after all services
 
 // Configure a middleware for 404s and the error handler
 app.use(notFound());

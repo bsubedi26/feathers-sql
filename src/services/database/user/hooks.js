@@ -1,52 +1,13 @@
 // const { authenticate } = require('@feathersjs/authentication').hooks;
-
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
-// const debounce = require('./hooks/debounce');
-// const catchAllErrors = require('./hooks/catchAllErrors');
 const verifyHooks = require('feathers-authentication-management').hooks;
 const commonHooks = require('feathers-hooks-common');
 
 const accountService = require('../../private/auth-management/notifier');
+const validateUniqueUser = require('./hooks/validateUniqueUser');
+// const sendVerificationEmail = require('./hooks/sendVerificationEmail');
 
-// AFTER USER IS CREATED SEND VERIFICATION EMAIL
-const sendVerificationEmail = () => {
-  return async hook => {
-    if (!hook.params.provider) return hook;
 
-    const user = hook.result;
-
-    if (hook.data && hook.data.email && user) {
-      accountService(hook.app).notifier('resendVerifySignup', user);
-      return hook;
-    }
-    return hook;
-  };
-};
-
-const fixAddVerification = () => {
-
-  return async hook => {
-    // console.log('FIX ME ', hook.data)
-    // hook.data.verifyExpires = new Date();
-    // console.log(hook.data.verifyChanges)
-    // JSON.stringify(hook.data.verifyChanges);
-    return hook;
-  };
-};
-
-// const checkJSON = () => {
-//   return async hook => {
-
-//     const { data } = hook.result;
-//     const obj = data.filter(item => item.id === 2)[0]
-//     const parsed = JSON.parse(obj.verifyChanges)
-//     console.log(parsed)
-//     console.log(parsed.wo)
-    
-
-//     return hook;
-//   }
-// }
 module.exports = {
   before: {
     all: [],
@@ -56,12 +17,13 @@ module.exports = {
     ],
     get: [],
     create: [
-      verifyHooks.addVerification(),
-      fixAddVerification(),
+      // verifyHooks.addVerification(),
+      // fixAddVerification(),
+      validateUniqueUser(),
       hashPassword() 
     ],
     update: [ 
-      commonHooks.disallow('external'),
+      // commonHooks.disallow('external'),
       hashPassword()
     ],
     patch: [
@@ -94,9 +56,9 @@ module.exports = {
     ],
     get: [],
     create: [
-      sendVerificationEmail(),
+      // sendVerificationEmail(),
       // removes verification/reset fields other than .isVerified
-      verifyHooks.removeVerification()
+      // verifyHooks.removeVerification()
     ],
     update: [],
     patch: [],

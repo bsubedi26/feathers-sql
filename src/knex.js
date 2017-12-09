@@ -6,6 +6,5 @@ module.exports = function (app) {
   // const { client, connection } = app.get('sqlite3');
 
   const db = knex({ client, connection });
-
   app.set('knexClient', db);
 };
