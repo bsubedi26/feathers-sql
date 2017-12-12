@@ -2,18 +2,17 @@ const path = require('path');
 const pug = require('pug');
 
 const isProd = process.env.NODE_ENV === 'production';
-// const returnEmail = process.env.COMPLAINT_EMAIL;
 
 module.exports = function(app) {
 
-  const returnEmail = app.get('complaint_email') || process.env.COMPLAINT_EMAIL;
+  const returnEmail = app.get('mailerAccount').user || process.env.COMPLAINT_EMAIL;
 
   function getLink(type, hash) {
     // var url;
-    var port = (app.get('port') === '80' || isProd)? '': ':' + app.get('port');
-    var host = (app.get('host') === 'HOST')? 'localhost': app.get('host');
-    var protocol = (app.get('protocol') === 'PROTOCOL')? 'http': app.get('protocol');
-    protocol += '://';
+    var host = (app.get('host') === 'HOST') ? 'localhost' : app.get('host');
+    var port = (app.get('port') === '80' || isProd) ? '': ':' + app.get('port');
+    // var protocol = (app.get('protocol') === 'PROTOCOL') ? 'http' : app.get('protocol');
+    var protocol = 'http://';
     return `${protocol}${host}${port}/login/${type}/${hash}`;
   }
 
@@ -41,16 +40,15 @@ module.exports = function(app) {
         hashLink = getLink('verify', user.verifyToken);
           
         templatePath = path.join(emailAccountTemplatesPath, 'verify-email.pug');
-
         compiledHTML = pug.compileFile(templatePath)({
           logo: '',
           name: user.name || user.email,
           hashLink,
           returnEmail
         });
-
+        
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Confirm Signup',
           html: compiledHTML
@@ -72,7 +70,7 @@ module.exports = function(app) {
         });
 
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Thank you, your email has been verified',
           html: compiledHTML
@@ -94,7 +92,7 @@ module.exports = function(app) {
         });
 
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Reset Password',
           html: compiledHTML
@@ -116,7 +114,7 @@ module.exports = function(app) {
         });
 
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Your password was reset',
           html: compiledHTML
@@ -135,7 +133,7 @@ module.exports = function(app) {
         });
 
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Your password was changed',
           html: compiledHTML
@@ -157,7 +155,7 @@ module.exports = function(app) {
         });
 
         email = {
-          from: app.get('emailAccount').user,
+          from: app.get('mailerAccount').user,
           to: user.email,
           subject: 'Your account was changed. Please verify the changes',
           html: compiledHTML

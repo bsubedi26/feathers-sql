@@ -23,37 +23,38 @@ const authentication = require('./authentication');
 
 const app = express(feathers());
 
-// Load app configuration
-app.configure(configuration());
-// Enable CORS, security, compression, favicon and body parsing
-app.use(cors());
-app.use(helmet());
-app.use(compress());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
-// Host the public folder
-app.use('/', express.static(app.get('public')));
+// Load app/express configuration
+app.configure(configuration())
+    .use(cors())
+    .use(helmet())
+    .use(compress())
+    .use(express.json())
+    .use(express.urlencoded({ extended: true }))
+    .use(favicon(path.join(app.get('public'), 'favicon.ico')))
+    .use('/', express.static(app.get('public')));
 
-// Set up Plugins and providers
-app.configure(rest());
-app.configure(socketio());
 
-app.configure(knex);
+// Load Feathers Core
+app.configure(rest())
+    .configure(socketio())
+    .configure(knex)
+    .configure(middleware)
+    .configure(channels)
+    .configure(authentication)
+    .configure(services)
+    .configure(profiler({ stats: 'detail' })); // must be configured after all services
 
-// Configure other middleware (see `middleware/index.js`)
-app.configure(middleware);
-// Set up event channels (see channels.js)
-app.configure(channels);
-app.configure(authentication);
-// Set up our services (see `services/index.js`)
-app.configure(services);
-app.configure(profiler({ stats: 'detail' })); // must be configured after all services
 
-// Configure a middleware for 404s and the error handler
-app.use(notFound());
-app.use(handler());
+// app.get('/auth/github/callback', (req, res) => {
+//     console.log('/AUTH/GITHUB/CALLBACK!')
+//     res.json({ authGithub: true })
+// })
 
+// Load Final handlers
+app.use(notFound())
+    .use(handler());
+
+//Load Top Level App hooks that run for every service
 app.hooks(appHooks);
 
 module.exports = app;

@@ -1,3 +1,5 @@
+const accountService = require('../../../../private/auth-management/notifier');
+
 // AFTER USER IS CREATED SEND VERIFICATION EMAIL
 const sendVerificationEmail = () => {
   return async hook => {

@@ -1,4 +1,4 @@
 {
-  "host": "feathers-3-sql-app.feathersjs.com",
+  "host": "http://feathers-example.herokuapp.com",
   "port": "PORT"
 }

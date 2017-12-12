@@ -1,45 +1,29 @@
 // const { authenticate } = require('@feathersjs/authentication').hooks;
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
 const verifyHooks = require('feathers-authentication-management').hooks;
-const commonHooks = require('feathers-hooks-common');
 
-const accountService = require('../../private/auth-management/notifier');
 const validateUniqueUser = require('./hooks/validateUniqueUser');
-// const sendVerificationEmail = require('./hooks/sendVerificationEmail');
+const sendVerificationEmail = require('./hooks/sendVerificationEmail');
 
+// const { iffElse } = require('feathers-hooks-common');
+// iffElse(predicate, hookFuncsTrue, hookFuncsFalse)
 
 module.exports = {
   before: {
     all: [],
     find: [
-      // debounce()
       // authenticate('jwt')
     ],
     get: [],
     create: [
-      // verifyHooks.addVerification(),
-      // fixAddVerification(),
       validateUniqueUser(),
-      hashPassword() 
+      // verifyHooks.addVerification(),
+      hashPassword()
     ],
     update: [ 
-      // commonHooks.disallow('external'),
       hashPassword()
     ],
     patch: [
-      commonHooks.iff(
-        commonHooks.isProvider('external'),    
-        commonHooks.preventChanges(
-          'email',
-          'isVerified',
-          'verifyToken',
-          'verifyShortToken',
-          'verifyExpires',
-          'verifyChanges',
-          'resetToken',
-          'resetShortToken',
-          'resetExpires'
-      )),
       hashPassword()
     ],
     remove: []
@@ -66,9 +50,7 @@ module.exports = {
   },
 
   error: {
-    all: [ 
-      // catchAllErrors()
-    ],
+    all: [],
     find: [],
     get: [],
     create: [],

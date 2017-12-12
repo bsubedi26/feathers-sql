@@ -2,11 +2,9 @@ const errors = require('feathers-errors');
 
 const isEnabled = () => {
   return function (hook) {
-
     if (!hook.params.provider) { return Promise.resolve(hook); }
-
     // if (_.get(hook, 'params.user.role') === 'admin') { return Promise.resolve(hook); }
-    if (hook.params.user.role === 'admin') { return Promise.resolve(hook); }
+    // if (hook.params.user.role === 'admin') { return Promise.resolve(hook); }
 
     // if (!_.get(hook, 'params.user') || _.isEmpty(hook.params.user)) {
     if (!hook.params.user || Object.keys(hook.params.user).length < 1) {

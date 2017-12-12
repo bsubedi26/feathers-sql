@@ -1,6 +1,6 @@
 {
   "host": "localhost",
-  "port": 3031,
+  "port": 3030,
   "public": "../public/",
   "paginate": {
     "default": 100,
@@ -31,7 +31,7 @@
     }
   },
   "authentication": {
-    "secret": "2feb498c475015e8ffd1381cfd210606fb0cb0868903ff1635922427bffbe8361b7589931108893ac2d3bf434cc4c08f860702641d720dbf6f1dfb38d12334d693426ffd2f89308752f54fe653d145ddae5b566ed5b9e398b610a5b19b4fd64c84071f1a0b049a1292bada97e67fc4fbd0ba7bf7237cf1638f7686a94e08ebf1ab5fb4e291d5425f1cefefe66a24ad86eafbc0b7c1a60a1f39fcc69527d39f3c0f8eaa990160648e8e4cf0771ced919a00e5e0722c9404d1555419fc247ea876b5d48a5a3db42d63417305b05af0accc89e6f0c4e9ff96afe0e08c282cb574940164150d910aaf45e65d04642fa3e1b2c0b2ddaa69dbeec01430e7ef736c79c1",
+    "secret": "8c1a44c7bbeb43b6c6c52e805f4b08b35f2ee00c84c1680ccfa46dd3affcab614b3c4ad144345ccc10033b64b035b32bce8f56643145dd9534e5bbc1292cc51060d59a70997d8119346440ea73651be2c04a4b97b0c3d721c6679b65aff7af8d0cfe717e664ea2baa9e058c0ea26cf3a6b04080f55f99bb161c7404ff317f78f1b6c785d890634266f3a0fe31c6e4e90d30cd2a6abfee08869aec2811e62a256fbd792bfe866037a8bee815f765f505fcba779a6634907514b64a17a628a8feb97f34142876b96c6717e74e216ae14ec51c79f8dbc3fdb0061bf9118e27a3300ad7ce9c2d3ff0b9f0fb3b51cda1658be3caace8726f9137f09576259e02afe31",
     "strategies": [
       "jwt",
       "local"
@@ -52,6 +52,47 @@
       "entity": "user",
       "usernameField": "email",
       "passwordField": "password"
+    },
+    "google": {
+      "clientID": "your google client id",
+      "clientSecret": "your google client secret",
+      "successRedirect": "/",
+      "scope": [
+        "profile openid email"
+      ]
+    },
+    "facebook": {
+      "clientID": "your facebook client id",
+      "clientSecret": "your facebook client secret",
+      "successRedirect": "/",
+      "scope": [
+        "public_profile",
+        "email"
+      ],
+      "profileFields": [
+        "id",
+        "displayName",
+        "first_name",
+        "last_name",
+        "email",
+        "gender",
+        "profileUrl",
+        "birthday",
+        "picture",
+        "permissions"
+      ]
+    },
+    "github": {
+      "clientID": "bfa0c6c5da9631cd99b2",
+      "clientSecret": "8ebca61bbcf3af0bca8f1eb96d848f72d76ab180",
+      "successRedirect": "/",
+      "callbackURL": "http://localhost:3030/auth/github/callback"
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "feathers-jwt",
+      "httpOnly": false,
+      "secure": false
     }
   }
 }
