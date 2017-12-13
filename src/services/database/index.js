@@ -1,9 +1,9 @@
 const userLocal = require('./user/local');
 const userOAuth = require('./user/oauth');
-// const message = require('./message');
+const monn = require('./monn/monn.service.js');
 
 module.exports = function (app) {
   app.configure(userLocal);
   app.configure(userOAuth);
-  // app.configure(message);
+  app.configure(monn);
 };

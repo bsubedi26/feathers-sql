@@ -18,8 +18,9 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
-const knex = require('./knex');
 const authentication = require('./authentication');
+
+const mongoose = require('./mongoose');
 
 const app = express(feathers());
 
@@ -34,10 +35,12 @@ app.configure(configuration())
     .use('/', express.static(app.get('public')));
 
 
+
+
 // Load Feathers Core
 app.configure(rest())
     .configure(socketio())
-    .configure(knex)
+    .configure(mongoose)
     .configure(middleware)
     .configure(channels)
     .configure(authentication)
