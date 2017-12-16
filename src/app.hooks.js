@@ -1,9 +1,15 @@
 // Application hooks that run for every service
 const logger = require('./hooks/logger');
+const { iff } = require('feathers-hooks-common');
+const isSqlite = require('./hooks/isSqlite');
+const stringifyJsonForSqlite = require('./hooks/stringifyJsonForSqlite');
 
 module.exports = {
   before: {
-    all: [ logger() ],
+    all: [
+      logger(),
+      iff((isSqlite()), stringifyJsonForSqlite())
+    ],
     find: [],
     get: [],
     create: [],
@@ -13,7 +19,10 @@ module.exports = {
   },
 
   after: {
-    all: [ logger() ],
+    all: [
+      logger(),
+      // iff((isSqlite()), parseJSONForSqlite())
+    ],
     find: [],
     get: [],
     create: [],

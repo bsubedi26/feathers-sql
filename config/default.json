@@ -6,11 +6,16 @@
     "default": 100,
     "max": 200
   },
+  "mailerAccount": {
+    "user": "****",
+    "pass": "****"
+  },
   "sqlite3": {
     "client": "sqlite3",
     "connection": {
       "filename": "./db.sqlite"
-    }
+    },
+    "useNullAsDefault": true
   },
   "postgres": {
     "client": "pg",

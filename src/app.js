@@ -45,11 +45,6 @@ app.configure(rest())
     .configure(profiler({ stats: 'detail' })); // must be configured after all services
 
 
-// app.get('/auth/github/callback', (req, res) => {
-//     console.log('/AUTH/GITHUB/CALLBACK!')
-//     res.json({ authGithub: true })
-// })
-
 // Load Final handlers
 app.use(notFound())
     .use(handler());
