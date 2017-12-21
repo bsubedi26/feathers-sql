@@ -1,11 +1,16 @@
+const afterOauthCreate = () => {
+    return async hook => {
+        // console.log('HOOK ', hook.result);
+        return hook;
+    };
+};
+
 module.exports = {
     before: {
         all: [
 
         ],
-        find: [
-
-        ],
+        find: [],
         get: [],
         create: [],
         update: [],
@@ -14,13 +19,16 @@ module.exports = {
     },
 
     after: {
-        all: [
-        ],
+        all: [],
         find: [],
         get: [],
-        create: [],
+        create: [
+            afterOauthCreate() // if first time user            
+        ],
         update: [],
-        patch: [],
+        patch: [
+            afterOauthCreate() // if revisiting user
+        ],
         remove: []
     },
 

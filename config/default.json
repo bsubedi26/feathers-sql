@@ -95,6 +95,7 @@
     },
     "cookie": {
       "enabled": true,
+      "domain": "localhost",
       "name": "feathers-jwt",
       "httpOnly": false,
       "secure": false

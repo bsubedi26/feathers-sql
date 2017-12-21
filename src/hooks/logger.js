@@ -1,15 +1,27 @@
 // A hook that logs service method before, after and error
 const logger = require('winston');
+const chalk = require('chalk');
 
 module.exports = function () {
   return function (hook) {
-    let message = `${hook.type}: ${hook.path} - Method: ${hook.method}`;
+    let message = `${hook.type}::${hook.method} [${hook.path}]`;
 
     if (hook.type === 'error') {
       message += `: ${hook.error.message}`;
     }
 
-    logger.info(message);
+    if (hook.type === 'before') {
+      console.log(chalk.yellow.bold(message));
+      
+    }
+    if (hook.type === 'after') {
+      console.log(chalk.green.bold(message));
+    }
+
+    if (hook.error) {
+      console.error(chalk.red.bold(hook.error));
+    }
+
     logger.debug('hook.data', hook.data);
     logger.debug('hook.params', hook.params);
 
@@ -17,8 +29,5 @@ module.exports = function () {
       logger.debug('hook.result', hook.result);
     }
 
-    if (hook.error) {
-      logger.error(hook.error);
-    }
   };
 };

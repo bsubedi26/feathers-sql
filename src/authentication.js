@@ -18,7 +18,6 @@ module.exports = function (app) {
   app.configure(oauth2(Object.assign({
     name: 'github',
     Strategy: GithubStrategy,
-
     // service property has to match table name AND service name
     service: 'oauth'
   }, config.github)));

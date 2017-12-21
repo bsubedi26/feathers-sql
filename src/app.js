@@ -34,7 +34,7 @@ app.configure(configuration())
     .use('/', express.static(app.get('public')));
 
 
-// Load Feathers Core
+    // Load Feathers Core
 app.configure(rest())
     .configure(socketio())
     .configure(knex)
@@ -49,7 +49,7 @@ app.configure(rest())
 app.use(notFound())
     .use(handler());
 
-//Load Top Level App hooks that run for every service
+// Load Top Level App hooks that run for every service
 app.hooks(appHooks);
 
 module.exports = app;
