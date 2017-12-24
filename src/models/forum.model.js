@@ -1,16 +1,19 @@
 module.exports = function (app) {
   const db = app.get('knexClient');
-  const table = 'comment';
+  const table = 'forum';
 
   db.schema.hasTable(table).then(exists => {
     if (!exists) {
       db.schema.createTable(table, t => {
         t.increments('id').primary();
-        t.string('comment').notNullable();
+        t.string('title').notNullable();
+        t.string('summary').notNullable();
+        t.string('topic').notNullable();
+        t.integer('favorites').defaultTo(0);
+        t.integer('opinions').defaultTo(0);
         
-        t.integer('forum_id').unsigned().references('id').inTable('forum');
         t.integer('creator_id').unsigned().references('id').inTable('user');
-        t.string('creator_email').notNullable();
+        t.string('creator_email').references('email').inTable('user').onDelete('cascade');
         t.timestamps(true, true);
 
       })

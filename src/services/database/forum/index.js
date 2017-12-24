@@ -1,32 +1,34 @@
-// Initializes the `messages` service on path `/messages`
+'use strict';
 const createService = require('feathers-knex');
-const createModel = require('../../models/comment.model');
-const hooks = require('./comment.hooks');
+const createModel = require('../../../models/forum.model');
+const hooks = require('./hooks');
 
-module.exports = function () {
-  const app = this;
+
+module.exports = function(app) {
   const Model = createModel(app);
   const paginate = app.get('paginate');
 
   const options = {
-    name: 'comment',
+    name: 'forum',
     Model,
     paginate
   };
 
   // Initialize our service with any options it requires
-  app.use('/comment', createService(options));
+  app.use('/forum', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('comment');
+  const service = app.service('forum');
 
   service.hooks(hooks);
-  
-  app.publish(() => {
+
+  service.publish(() => {
     // Here you can add event publishers to channels set up in `channels.js`
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 
     // e.g. to publish all service events to all authenticated users use
-    // return app.channel('authenticated');
+    return app.channel('authenticated', 'anonymous');
+    // return app.channel('anonymous');
   });
+
 };
