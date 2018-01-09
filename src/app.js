@@ -34,7 +34,7 @@ app.configure(configuration())
     .use('/', express.static(app.get('public')));
 
 
-    // Load Feathers Core
+// Load Feathers Core
 app.configure(rest())
     .configure(socketio())
     .configure(knex)
